@@ -951,6 +951,15 @@
                     <h3 class="login-tab"><a class="log-in active" href="#login-tab-content}"><span>Iniciar Sesión<span></a></h3>
                     <h3 class="signup-tab"><a class="sign-up" href="#signup-tab-content"><span>Registrarse</span></a></h3>
                 </div>
+                @if($errors->any())
+
+                    <div>
+
+                        <ul>@foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                        @endforeach</ul>
+                    </div>
+                @endif
                 <!-- TABS CONTENT -->
                 <div class="tabs-content">
                     <!-- TABS CONTENT LOGIN -->
@@ -969,13 +978,33 @@
                     </div>
                     <!-- TABS CONTENT SIGNUP -->
                     <div id="signup-tab-content">
-                        <form class="signup-form" action="{{ route('register') }}" method="post">
+                        <form class="signup-form" action="{{route('register')}}" method="POST">
                             @csrf
-
                             <input type="email" class="input"  name="email" id="email" autocomplete="off" placeholder="Correo electronico">
-                            <input type="name" class="input" id="name"  autocomplete="off" placeholder="Usuario">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <input type="text" class="input" id="name" name="name"  autocomplete="off" placeholder="Usuario">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                             <input type="password" class="input" id="password" name="password" autocomplete="off" placeholder="Contraseña">
-                            <input type="submit"   value="Registrarse">
+                            @error('password"')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <input type="password" class="input" id="password-confirm" name="password_confirmation" autocomplete="off" placeholder="Confirmar Contrasena">
+                            @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <input type="submit"  class="button"  value="Registrarse">
                         </form>
 
                     </div>
@@ -1077,12 +1106,6 @@
         });
     });
 
-    // DISABLE SUBMIT FOR DEMO
-    $(function() {
-        $('.button').on('click', function(event) {
-
-        });
-    });
     //# sourceURL=pen.js
 </script>
 </body></html>
