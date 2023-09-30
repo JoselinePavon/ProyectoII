@@ -970,7 +970,7 @@
                             <input type="password" class="input" name="password" id="password" autocomplete="off" placeholder="Contraseña">
                             <input type="checkbox" class="checkbox" checked id="remember_me">
                             <label for="remember_me">Recordar contraseña</label>
-                            <input type="submit"  value="Entrar">
+                            <input type="submit" class="button" value="Entrar">
                         </form>
                         <div class="help-action">
                             <p><i class="fa fa-arrow-left" aria-hidden="true"></i><a class="forgot" href="#">¿Has olvidado la contraseña?</a></p>

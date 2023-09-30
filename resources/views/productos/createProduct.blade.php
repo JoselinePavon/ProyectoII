@@ -23,9 +23,8 @@
                         </ul>
                     </div>
                 @endif
-
                 <div class="card" style="background-color: transparent;border-radius: 10px; border-color: #343635FF">
-                    <form action="" method="POST" >
+                    <form action="{{ route('save')}}" method="POST" >
                         @csrf
 
                         <div class=" card-header text-center" style="background-color: #343635FF; border-radius: 10px;border-color: #7F135FFF">
@@ -35,7 +34,7 @@
                         <div class="card-body" >
                             <div class="row">
                                 <div class="col-lg text-light">
-                                    <input type="text" name="codigo" class="form-control" style="background-color: transparent; "value="{{old('codigo_producto')}}"
+                                    <input type="text" name="codigo_producto" class="form-control" style="background-color: transparent; "value="{{old('codigo_producto')}}"
                                            placeholder="Codigo" >
                                 </div>
 
@@ -47,7 +46,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg text-light">
-                                    <input type="text" name="precio" class="form-control" style="background-color: transparent; "value="{{old('precio_venta')}}"
+                                    <input type="text" name="precio_venta" class="form-control" style="background-color: transparent; "value="{{old('precio_venta')}}"
                                            placeholder="Precio" >
                                 </div>
 
@@ -60,14 +59,25 @@
                             <div class="row">
                                 <div class="col-lg text-light">
                                 <div class="custom-file col-md-12">
-                                    <input type="file" name="foto" class="custom-file-input" id="customFile" style="background-color: transparent;value="{{old('foto_producto')}}"
+                                    <input type="file" name="foto_producto" class="custom-file-input" id="customFile" style="background-color: transparent;value="{{old('foto_producto')}}"
                                         placeholder="Imagen"</imput>
                                     <label class="custom-file-label" for="customFile"style="background-color: transparent"> Subir foto del producto </label>
                                 </div>
                                  </div>
                                 </div>
                             </div>
-                           <br>
+
+                        <div class="row">
+                            <div class="col-lg text-light">
+                                <div class="custom-file col-md-12">
+                                    <div class="col-lg">
+                                        <input type="text" name="categoria"class="form-control" style="background-color: transparent; value="{{old('categoria')}}"
+                                        placeholder="Categoria">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <br>
                             <div class="row form-group">
                                 <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" onclick="save()" style="background-color: #7F135FFF">
                                     <i class="fas fa-save"></i> Guardar Producto

@@ -181,14 +181,13 @@
         <img src="https://static.vecteezy.com/system/resources/previews/013/368/321/original/coding-3d-render-icon-illustration-png.png" alt="Logo">
         <p>Centro de Servicio IndexGT</p>
     </div>
-
     <div class="user">
-        <button type="button" class="btn btn-outline-warning"><i class="fas fa-user"></i> Sesion iniciada</button>
-        <div class="dropdown">
-            <ul>
-                <li><a href="#">Cerrar Sesión</a></li>
-            </ul>
-        </div>
+        <form method="post" action="/logout">
+            @csrf
+            <button type="submit" class="btn btn-outline-warning" id="logoutButton">
+                <i class="fas fa-user"></i> Cerrar Sesión
+            </button>
+        </form>
     </div>
 </nav>
 <div class="sidebar" id="sidebar">
