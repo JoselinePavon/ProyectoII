@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProducController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::post('/tecnico/createTechnical', [\App\Http\Controllers\TechnicalControll
 Route::get('/read/tecnico', [\App\Http\Controllers\TechnicalController::class, 'index'])->name('index')->middleware('auth'); // Ruta para la vista de técnico
 
 /* Routes product */
+Route::resource('/producs', ProducController::class);
 Route::get('/create/product', [\App\Http\Controllers\ProductosController::class, 'createProduct'])->name('createProduct')->middleware('auth'); // Ruta para formulario de producto
 Route::get('/productos/read', [\App\Http\Controllers\ProductosController::class, 'index'])->name('productos.index')->middleware('auth'); // Ruta para la vista de productos
 Route::post('/productos/create/product', [\App\Http\Controllers\ProductosController::class, 'save'])->name('save')->middleware('auth');//Ruta para guardar el formulario

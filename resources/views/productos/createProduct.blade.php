@@ -59,9 +59,9 @@
                             <div class="row">
                                 <div class="col-lg text-light">
                                 <div class="custom-file col-md-12">
-                                    <input type="file" name="foto_producto" class="custom-file-input" id="customFile" style="background-color: transparent;value="{{old('foto_producto')}}"
-                                        placeholder="Imagen"</imput>
-                                    <label class="custom-file-label" for="customFile"style="background-color: transparent"> Subir foto del producto </label>
+                                    <input type="file" name="foto_producto" class="custom-file-input" id="foto_producto" style="background-color: transparent;value="{{old('foto_producto')}}"
+                                    </input>
+                                    <label class="custom-file-label" name= "foto_producto"for="customFile"style="background-color: transparent"> Subir foto del producto </label>
                                 </div>
                                  </div>
                                 </div>
