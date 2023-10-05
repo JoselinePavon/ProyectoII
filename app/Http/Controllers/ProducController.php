@@ -69,6 +69,7 @@ class ProducController extends Controller
 
         return redirect()->route('producs.index')
             ->with('success', 'Producto creado exitosamente.');
+
     }
 
 

@@ -39,10 +39,10 @@
             font-family: "Nunito", sans-serif;
             text-align: center;
             height: 100%;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(146, 0, 162) 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(0, 0, 46)), color-stop(100%, rgb(146, 0, 162)));
-            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(146, 0, 162) 100%);
-            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(146, 0, 162) 100%);
+            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(146, 0, 162)));
+            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
+            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
             overflow: hidden;
 
         }
@@ -976,6 +976,8 @@
                             <p><i class="fa fa-arrow-left" aria-hidden="true"></i><a class="forgot" href="#">¿Has olvidado la contraseña?</a></p>
                         </div>
                     </div>
+
+
                     <!-- TABS CONTENT SIGNUP -->
                     <div id="signup-tab-content">
                         <form class="signup-form" action="{{route('register')}}" method="POST">
@@ -1004,6 +1006,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
+                                <input type="hidden" name="rol_usuario_id"  value="3">
                             <input type="submit"  class="button"  value="Registrarse">
                         </form>
 

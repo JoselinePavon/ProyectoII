@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -26,10 +32,10 @@
             position: fixed;
             top: 0;
             left: -250px;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(127, 19, 95) 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(0, 0, 46)), color-stop(100%, rgb(127, 19, 95)));
-            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(127, 19, 95) 100%);
-            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(0, 0, 46) 50%, rgb(127, 19, 95) 100%);
+            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
+            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
             transition: left 0.3s ease-in-out;
             overflow-y: auto;
         }
@@ -71,7 +77,7 @@
             left: 0;
             width: 0; /* Ancho inicial */
             height: 100%;
-            background-color: #7f135f;
+            background-color: #3cbcd0;
             z-index: -1; /* Detrás del texto */
             transition: width 0.8s ease; /* Transición del ancho del fondo */
         }
@@ -81,7 +87,7 @@
         }
 
         .sidebar ul li a:hover {
-            background-color:#7f135f;
+            background-color:#3cbcd0;
             background-size: 200px; /* Ajusta el ancho del color de fondo aquí */
             transition: background-size 0.3s; /* Agrega una transición suave */
             width: 100%; /* Modifica el ancho del color de fondo */
@@ -106,7 +112,7 @@
         }
 
         .navbar {
-            background-color: #343635;
+            background-color: #3CBCD0FF;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -184,7 +190,7 @@
     <div class="user">
         <form method="post" action="/logout">
             @csrf
-            <button type="submit" class="btn btn-outline-warning" id="logoutButton">
+            <button type="submit" class="btn btn-outline-dark" id="logoutButton">
                 <i class="fas fa-user"></i> Cerrar Sesión
             </button>
         </form>
@@ -193,7 +199,7 @@
 <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></div>
     <ul>
-        <li><a href="{{url('/home')}}"><i class="fas fa-home"></i> Inicio</a></li>
+        <li><a href="{{url('index')}}"><i class="fas fa-home"></i> Inicio</a></li>
         <li><a  href="{{url('read/tecnico')}}"><i class="fas fa-user"></i> Personal Tecnico</a></li>
         <li><a href="{{url('/producs')}}"><i class="fa-solid fa-cart-plus"></i> productos</a></li>
         <li><a href="{{url('read/ordenes')}}"> <i class="fa-solid fa-clipboard-list"></i> Ordenes de servicio</a></li>

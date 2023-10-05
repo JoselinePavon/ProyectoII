@@ -15,10 +15,10 @@ use App\Http\Controllers\ProducController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('index');
 })->middleware('auth');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+//rutas para el admin
+Route::get('index', [App\Http\Controllers\HomeController::class, 'index'])->name('index')->middleware('auth');
 
 /* Routes technical */
 Route::get('/create/tecnico', [\App\Http\Controllers\TechnicalController::class, 'createTechnical'])->name('createTechnical')->middleware('auth'); // Ruta para formulario de Registro
@@ -33,3 +33,8 @@ Route::post('/productos/create/product', [\App\Http\Controllers\ProductosControl
 
 /* Routes ordenes */
 Route::get('/read/ordenes', [\App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index'); // Ruta para la vista de ordenes
+//---------------FINALIZAN LAS RUTAS DEL ADMINISTRADOR--------------------
+
+//RUTA DEL CLIENTE
+Route::get('/home3', [\App\Http\Controllers\VistaCliente::class, 'index'])->name('home3'); // Ruta para la vista de cliente
+Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo');// vista para el catalogo del cliente

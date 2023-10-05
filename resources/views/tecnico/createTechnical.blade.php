@@ -2,10 +2,6 @@
 @section('title', 'Tecnico')
 
 @section('content')
-    <div class="container">
-        <div class=" row justify-content-center">
-            <div class="col-md-7 mt-5 ml-5">
-
                 <!-- Mensaje Flash -->
                 @if(session('Guardado'))
                     <div class="alert alert-success">
@@ -23,26 +19,30 @@
                         </ul>
                     </div>
                 @endif
-
-                <div class="card" style="background-color: transparent;border-radius: 10px; border-color: #343635FF">
-                    <form action="" method="POST" >
-                        @csrf
-
-                        <div class=" card-header text-center" style="background-color: #343635FF; border-radius: 10px;border-color: #7F135FFF">
-                            <h2 style="color: #FEFBE7">
-                                <i class="fas fa-user-check"></i> Registrar un tecnico</h2>
-                        </div>
-                        <div class="card-body" >
+                <style>
+                    .signup-form {
+                        background-color: white;
+                    }
+                </style>
+                <section class="content container-fluid-center" >
+                    <div class="row">
+                        <div class="col-md-8 mt-6 ml-8 nunito sans-serif text-center mx-auto" >
+                            <div class="card-header" style="background-color:#9ecbe6">
+                                <h2 class="text-center" style="color: white">
+                                    <i class="fas fa-user-cog"></i> Registrar Tecnico</h2>
+                            </div>
+                            <form class="signup-form" action="{{route('saveTechnical')}}" method="POST">
+                                @csrf
+                             <div class="card-body">
                             <div class="row">
 
                                 <div class="col-lg text-light">
-                                    <input type="text" name="nombre" class="form-control" style="background-color: transparent; "value="{{old('nombre_usuario')}}"
-                                           placeholder="Nombre" name="nombre_tecnico">
+                                    <input type="text" name="name" id="name"class="form-control"
+                                           placeholder="Usuario">
                                 </div>
-
                                 <div class="col-lg">
-                                    <input type="text" name="apellido"class="form-control" style="background-color: transparent;
-                                           value="{{old('apellico_usuario')}}" placeholder="Apellido">
+                                    <input type="text" name="nombre"  id="nombre"class="form-control"
+                                           placeholder="Nombre">
                                 </div>
 
                             </div>
@@ -50,15 +50,19 @@
 
                             <div class="row">
                                 <div class="col-lg">
-                                    <input type="text" name="usuario" class="form-control" style="background-color: transparent"
-                                           value="{{old('usuario')}}" placeholder="Usuario">
+                                    <input type="text" name="apellido" id="apellido" class="form-control"
+                                            placeholder="Apellido">
+                                </div>
+                                <div class="col-lg">
+                                    <input type="text" name="email" id="email" class="form-control"
+                                           placeholder="Email">
                                 </div>
                             </div>
                             <br>
 
                             <div class="row">
                                 <div class="col-lg position-relative">
-                                    <input type="password" name="contraseña" id="contraseña" class="form-control" style="background-color: transparent" value="{{old('contraseña')}}" placeholder="Contraseña">
+                                    <input type="password" name="password" id="password" class="form-control"   placeholder="Contraseña">
                                     <div class="form-group text-right position-absolute" style="right: 15px; top: 0px;">
                                         <button type="button" id="mostrarOcultar" class="btn btn-dark">
                                             <i class="fas fa-eye"></i>
@@ -66,19 +70,17 @@
                                     </div>
                                 </div>
                             </div>
+                    <br>
+                            <input type="hidden" name="rol_usuario_id"  value="2">
+                            <div class="row form-group">
+                                <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" href="{{ url('/read/tecnico') }}" onclick="save()" style="background-color: #9ecbe6">
+                                    <i class="fas fa-save"></i> Guardar Registro
+                                </button>
 
 
-
-                                <br>
-                                <div class="row form-group">
-                                    <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" onclick="save()" style="background-color: #7F135FFF">
-                                        <i class="fas fa-save"></i> Guardar Registro
-                                    </button>
-
-
-                                    <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/read/tecnico') }}" style="background-color: #ff1457"><i
-                                            class="fas fa-ban"></i> Cancelar</a>
-                                </div>
+                                <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/read/tecnico') }}" style="background-color: #ff1457"><i
+                                        class="fas fa-ban"></i> Cancelar</a>
+                            </div>
 
                             <script>
                                 const contraseñaInput = document.getElementById("contraseña");
@@ -92,5 +94,9 @@
                                     }
                                 });
                             </script>
+                        </div>
+                    </form>
+                </div>
+            </div>
 @endsection
 

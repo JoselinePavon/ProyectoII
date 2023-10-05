@@ -8,14 +8,14 @@
     <section class="content container-fluid">
         <div class="row nunito sans-serif">
             <div class="col-md-12 nunito sans-serif">
-                <div class="card" style="background-color: transparent">
+                <div class="card" style="background-color: white">
                     <div class="card-header" style="background-color: #343635FF"  >
                         <div class="float-left" >
                            <h2><span class="card-title" style="color: white">{{ __(' 💻 Caracteristicas del producto') }}</span> </h2>
                         </div>
                         <div class="float-right">
                             <i class="bi bi-arrow-return-left"></i>
-                            <a class="btn btn-outline-light mb-2" style="background-color: #7F135FFF; color:lightgray"  href="{{ route('producs.index') }}"> {{ __(' ← Regresar') }} </a>
+                            <a class="btn btn-outline-light mb-2" style="background-color: #3cbcd0; color:lightgray"  href="{{ route('producs.index') }}"> {{ __(' ← Regresar') }} </a>
                         </div>
                     </div>
 
