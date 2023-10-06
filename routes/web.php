@@ -32,7 +32,8 @@ Route::get('/productos/read', [\App\Http\Controllers\ProductosController::class,
 Route::post('/productos/create/product', [\App\Http\Controllers\ProductosController::class, 'save'])->name('save')->middleware('auth');//Ruta para guardar el formulario
 
 /* Routes ordenes */
-Route::get('/read/ordenes', [\App\Http\Controllers\OrdenController::class, 'index'])->name('ordenes.index'); // Ruta para la vista de ordenes
+Route::resource('/servicios', \App\Http\Controllers\ServicioController::class); // Ruta para la vista de ordenes
+
 //---------------FINALIZAN LAS RUTAS DEL ADMINISTRADOR--------------------
 
 //RUTA DEL CLIENTE

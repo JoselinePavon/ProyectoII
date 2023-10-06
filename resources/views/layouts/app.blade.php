@@ -202,7 +202,7 @@
         <li><a href="{{url('index')}}"><i class="fas fa-home"></i> Inicio</a></li>
         <li><a  href="{{url('read/tecnico')}}"><i class="fas fa-user"></i> Personal Tecnico</a></li>
         <li><a href="{{url('/producs')}}"><i class="fa-solid fa-cart-plus"></i> productos</a></li>
-        <li><a href="{{url('read/ordenes')}}"> <i class="fa-solid fa-clipboard-list"></i> Ordenes de servicio</a></li>
+        <li><a href="{{url('servicios')}}"> <i class="fa-solid fa-clipboard-list"></i> Ordenes de servicio</a></li>
         <li><a href="#"><i class="fa-solid fa-chart-line"></i> Informes</a></li>
     </ul>
 </div>

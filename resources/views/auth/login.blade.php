@@ -39,10 +39,10 @@
             font-family: "Nunito", sans-serif;
             text-align: center;
             height: 100%;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(146, 0, 162)));
-            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
-            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(146, 0, 162) 100%);
+            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
+            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
             overflow: hidden;
 
         }

@@ -10,13 +10,13 @@
 </head>
 <body>
 <div class="dashboard">
-    <a href="ruta_de_la_pagina_1">
+    <a href=" {{ route('servicios.create') }}">
     <div class="option div-con-borde">
         <img src="https://www.manageengine.com/products/service-desk/itil/images/itil-service-catalog-guide.png" alt="Imagen 1">
         <p>Solicitud de servicio</p>
     </div>
     </a>
-    <a href="ruta_de_la_pagina_2">
+    <a href="">
     <div class=" option div-con-borde">
         <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" alt="Imagen 2">
         <p>Comprar productos</p>

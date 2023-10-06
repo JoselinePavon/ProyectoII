@@ -34,7 +34,7 @@
                             <table class="table text-center nunito sans-serif "style="background-color: white" >
                                 <thead class="thead" style="background-color: #343635FF" >
                                     <tr>
-                                        <th style="color: white">No</th>
+
 										<th style="color: white">Codigo</th>
 										<th style="color: white">Nombre</th>
 										<th style="color: white">Precio</th>
@@ -48,7 +48,7 @@
                                 <tbody>
                                     @foreach ($producs as $produc)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+
 											<td>{{ $produc->codigo_producto }}</td>
 											<td>{{ $produc->nombre_producto }}</td>
 											<td>{{ $produc->precio_venta }}</td>

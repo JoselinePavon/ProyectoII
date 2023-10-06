@@ -2,14 +2,11 @@
     <div class="box-body" >
         <div class="row" >
         <div class="col-lg" >
-
             {{ Form::text('codigo_producto', $produc->codigo_producto, ['class' => 'form-control' . ($errors->has('codigo_producto') ? ' is-invalid' : ''), 'placeholder' => 'Codigo Producto', ]) }}
             {!! $errors->first('codigo_producto', '<div class="invalid-feedback">:message</div>') !!}
-
         </div>
 
         <div class="col-lg">
-
             {{ Form::text('nombre_producto', $produc->nombre_producto, ['class' => 'form-control' . ($errors->has('nombre_producto') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Producto']) }}
             {!! $errors->first('nombre_producto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
