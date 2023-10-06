@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $tipo_servicio
  * @property $created_at
  * @property $updated_at
+ * @property $users_id
  *
  * @property Asignacion[] $asignacions
  * @property User $user
@@ -30,7 +31,7 @@ class Servicio extends Model
 		'referencias' => 'required',
 		'numero_telefono' => 'required',
 		'tipo_servicio' => 'required',
-
+		'users_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -40,7 +41,7 @@ class Servicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_cliente','direccion_cliente','referencias','numero_telefono','tipo_servicio'];
+    protected $fillable = ['nombre_cliente','direccion_cliente','referencias','numero_telefono','tipo_servicio','users_id'];
 
 
     /**

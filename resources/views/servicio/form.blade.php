@@ -22,18 +22,16 @@
         </div>
         <div class="form-group">
             {{ Form::label('tipo_servicio') }}
-            {{ Form::text('tipo_servicio', $servicio->tipo_servicio, ['class' => 'form-control' . ($errors->has('tipo_servicio') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Servicio']) }}
+            {{ Form::text('tipo_servicio', $servicio->tipo_servicio, ['class' => 'form-control' . ($errors->has('tipo_servicio') ? ' is-invalid' : ''), 'placeholder' => 'Mantenimiento PC, Mantenimiento Impresora, Revision de equipo']) }}
             {!! $errors->first('tipo_servicio', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-
-        <br>
-
+        <input type="hidden" name="users_id"  value="6">
         <div class="row">
             <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" onclick="save()" style="background-color: #9ecbe6">
                 <i class="fas fa-save"></i> Guardar Producto
             </button>
 
-            <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('home3')}}" style="background-color: #ff1457"><i
+            <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/home3')}}" style="background-color: #ff1457"><i
                     class="fas fa-ban"></i> Cancelar</a>
         </div>
 

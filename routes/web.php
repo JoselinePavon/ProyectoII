@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProducController;
+use App\Http\Controllers\VistaClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,8 @@ use App\Http\Controllers\ProducController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth');
-//rutas para el admin
-Route::get('index', [App\Http\Controllers\HomeController::class, 'index'])->name('index')->middleware('auth');
+
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');;
 
 /* Routes technical */
 Route::get('/create/tecnico', [\App\Http\Controllers\TechnicalController::class, 'createTechnical'])->name('createTechnical')->middleware('auth'); // Ruta para formulario de Registro
@@ -37,5 +35,9 @@ Route::resource('/servicios', \App\Http\Controllers\ServicioController::class); 
 //---------------FINALIZAN LAS RUTAS DEL ADMINISTRADOR--------------------
 
 //RUTA DEL CLIENTE
-Route::get('/home3', [\App\Http\Controllers\VistaCliente::class, 'index'])->name('home3'); // Ruta para la vista de cliente
-Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo');// vista para el catalogo del cliente
+    Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3'); // Ruta para la vista de cliente
+    Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo');// vista para el catalogo del cliente
+
+
+//RUTA PARA EL TECNICO
+Route::get('/home2', [\App\Http\Controllers\HomeController::class, 'index'])->name('home2'); // Ruta para la vista de cliente

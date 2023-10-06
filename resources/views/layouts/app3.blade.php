@@ -118,33 +118,6 @@
 </div>
 
 
-<script>
-    function openSidebar() {
-        document.getElementById("sidebar").classList.add("active");
-        document.getElementById("content").classList.add("active");
-        document.querySelector(".navbar").classList.add("hide"); // Oculta el navbar cuando se abre el menú
-    }
-
-    function closeSidebar() {
-        document.getElementById("sidebar").classList.remove("active");
-        document.getElementById("content").classList.remove("active");
-        document.querySelector(".navbar").classList.remove("hide"); // Muestra el navbar cuando se cierra el menú
-    }
-
-    function logout() {
-        alert("Cerrar Sesión");
-        // Agregar aquí el código para cerrar sesión
-        // Esta función se ejecutará cuando el documento esté listo
-        $(document).ready(function() {
-            // Agrega un evento de clic al botón de "Sesión iniciada"
-            $('#navbarDropdown').click(function(event) {
-                event.preventDefault(); // Evita que se siga el enlace
-                // Muestra u oculta el menú desplegable
-                $('.dropdown-menu').toggleClass('show');
-            });
-        });
-    }
-</script>
 </body>
 </html>
 

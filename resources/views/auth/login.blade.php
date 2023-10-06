@@ -994,6 +994,18 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
+                            <input type="text" class="input" id="nombre" name="nombre"  autocomplete="off" placeholder="Nombre">
+                            @error('nombre')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                            <input type="text" class="input" id="apellido" name="apellido"  autocomplete="off" placeholder="Nombre">
+                            @error('nombre')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                             <input type="password" class="input" id="password" name="password" autocomplete="off" placeholder="Contraseña">
                             @error('password"')
                             <span class="invalid-feedback" role="alert">
