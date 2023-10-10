@@ -75,10 +75,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                                {{$producs->links() }}
                         </div>
                     </div>
                 </div>
-                {!! $producs->links() !!}
+
             </div>
         </div>
     </div>

@@ -1,18 +1,11 @@
 
-<!DOCTYPE html>
+
+            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -25,6 +18,9 @@
             padding: 0;
             background-image: url("https://www.xtrafondos.com/wallpapers/degradado-difuminado-cafe-y-azul-8005.jpg");
         }
+        .navbar.hide {
+            left: 0;
+        }
 
         .sidebar {
             height: 100%;
@@ -32,7 +28,7 @@
             position: fixed;
             top: 0;
             left: -250px;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);;
             background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
             background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
             background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
@@ -179,6 +175,8 @@
         .dropdown:hover {
             display: block;
         }
+
+
     </style>
 </head>
 <body>
@@ -195,6 +193,7 @@
             </button>
         </form>
     </div>
+
 </nav>
 <div class="sidebar" id="sidebar">
     <div class="close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></div>
@@ -206,6 +205,7 @@
         <li><a href="#"><i class="fa-solid fa-chart-line"></i> Informes</a></li>
     </ul>
 </div>
+
 <div class="content" id="content">
     <div class="open-btn" onclick="openSidebar()"><i class="fas fa-bars"></i></div>
     @yield('content')
@@ -213,6 +213,7 @@
 
 
 <script>
+
     function openSidebar() {
         document.getElementById("sidebar").classList.add("active");
         document.getElementById("content").classList.add("active");
@@ -222,24 +223,12 @@
     function closeSidebar() {
         document.getElementById("sidebar").classList.remove("active");
         document.getElementById("content").classList.remove("active");
-        document.querySelector(".navbar").classList.remove("hide"); // Muestra el navbar cuando se cierra el menú
+        document.querySelector(".navbar").classList.remove("hide");
+
     }
 
-    function logout() {
-        alert("Cerrar Sesión");
-        // Agregar aquí el código para cerrar sesión
-        // Esta función se ejecutará cuando el documento esté listo
-        $(document).ready(function() {
-            // Agrega un evento de clic al botón de "Sesión iniciada"
-            $('#navbarDropdown').click(function(event) {
-                event.preventDefault(); // Evita que se siga el enlace
-                // Muestra u oculta el menú desplegable
-                $('.dropdown-menu').toggleClass('show');
-            });
-        });
-    }
+
 </script>
 </body>
 </html>
-
 

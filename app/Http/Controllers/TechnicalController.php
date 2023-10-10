@@ -9,10 +9,9 @@ class TechnicalController extends Controller
 {
     public function index()
     {
-        $user = User::paginate()
-        ->where('rol_usuario_id', '=', '2');
-        return view('tecnico.readTechnical', compact('user'));
 
+        $user = User::where('rol_usuario_id', '=', '2')->paginate(10);
+        return view('tecnico.readTechnical', compact('user'));
     }
 
     public function createTechnical()
@@ -54,4 +53,13 @@ class TechnicalController extends Controller
 
         return redirect('/read/tecnico')->with('success', "Tecnico registrado");
     }
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return redirect()->route('index')
+            ->with('success', 'Usuario eliminado exitosamente');
+
+
+    }
+
 }

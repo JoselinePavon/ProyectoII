@@ -1000,7 +1000,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                             @enderror
-                            <input type="text" class="input" id="apellido" name="apellido"  autocomplete="off" placeholder="Nombre">
+                            <input type="text" class="input" id="apellido" name="apellido"  autocomplete="off" placeholder="Apellido">
                             @error('nombre')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -19,7 +19,7 @@ class ProducController extends Controller
      */
     public function index()
     {
-        $producs = Produc::paginate();
+        $producs = Produc::paginate(10);
 
         return view('produc.index', compact('producs'))
             ->with('i', (request()->input('page', 1) - 1) * $producs->perPage());
@@ -50,7 +50,7 @@ class ProducController extends Controller
             'precio_venta' => 'required',
             'marca' => 'required',
             'foto_producto' => 'required',
-            'categoria' => 'required',
+            'categoria_id' => 'required',
         ]);
         if ($request->hasFile('foto_producto')) {
             $foto_producto = $request->file('foto_producto');
@@ -63,7 +63,7 @@ class ProducController extends Controller
         $produc->precio_venta = $request->precio_venta;
         $produc->marca = $request->marca;
         $produc->foto_producto = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
-        $produc->categoria = $request->categoria;
+        $produc->categoria_id =$request->categoria_id;
         $produc->save();
 
 
@@ -113,7 +113,7 @@ class ProducController extends Controller
         $produc->update($request->all());
 
         return redirect()->route('producs.index')
-            ->with('success', 'Produc updated successfully');
+            ->with('success', 'Producto actualizado exitosamente');
     }
 
     /**
@@ -126,6 +126,6 @@ class ProducController extends Controller
         $produc = Produc::find($id)->delete();
 
         return redirect()->route('producs.index')
-            ->with('success', 'Produc deleted successfully');
+            ->with('success', 'Producto eliminado exitosamente');
     }
 }

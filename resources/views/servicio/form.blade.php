@@ -25,7 +25,7 @@
             {{ Form::text('tipo_servicio', $servicio->tipo_servicio, ['class' => 'form-control' . ($errors->has('tipo_servicio') ? ' is-invalid' : ''), 'placeholder' => 'Mantenimiento PC, Mantenimiento Impresora, Revision de equipo']) }}
             {!! $errors->first('tipo_servicio', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <input type="hidden" name="users_id"  value="6">
+
         <div class="row">
             <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" onclick="save()" style="background-color: #9ecbe6">
                 <i class="fas fa-save"></i> Guardar Producto

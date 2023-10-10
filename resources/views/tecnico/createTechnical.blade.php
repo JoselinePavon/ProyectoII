@@ -82,18 +82,18 @@
                                         class="fas fa-ban"></i> Cancelar</a>
                             </div>
 
-                            <script>
-                                const contraseñaInput = document.getElementById("contraseña");
-                                const mostrarOcultarBoton = document.getElementById("mostrarOcultar");
+                                 <script>
+                                     const mostrarOcultarBtn = document.getElementById('mostrarOcultar');
+                                     const passwordInput = document.getElementById('password');
 
-                                mostrarOcultarBoton.addEventListener("click", function() {
-                                    if (contraseñaInput.type === "password") {
-                                        contraseñaInput.type = "text";
-                                    } else {
-                                        contraseñaInput.type = "password";
-                                    }
-                                });
-                            </script>
+                                     mostrarOcultarBtn.addEventListener('click', function() {
+                                         if (passwordInput.type === 'password') {
+                                             passwordInput.type = 'text';
+                                         } else {
+                                             passwordInput.type = 'password';
+                                         }
+                                     });
+                                 </script>
                         </div>
                     </form>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,12 +14,14 @@ class HomeController extends Controller
     }
     elseif ($request->user()->rol_usuario_id ==2)
     {
-        return view('home2');
+        return redirect()->route('home2');
     }
     else
     {
         return view('home3');
     }
     }
+
+
 
 }

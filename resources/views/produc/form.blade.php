@@ -36,11 +36,12 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-lg">
-
-            {{ Form::text('categoria', $produc->categoria, ['class' => 'form-control' . ($errors->has('categoria') ? ' is-invalid' : ''), 'placeholder' => 'Categoria']) }}
-            {!! $errors->first('categoria', '<div class="invalid-feedback">:message</div>') !!}
+            <div class="col-lg">
+                {{ Form::select('categoria_id', ['1' => 'Impresora','2' => 'Laptop', '3' => 'Pc-Escritorio','4' => 'Accesorios' ], $produc->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona una categoría']) }}
+                {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
         </div>
+
     </div>
         <br>
 

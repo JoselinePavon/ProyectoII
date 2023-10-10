@@ -12,13 +12,13 @@
 <div class="dashboard">
     <a href=" {{ route('servicios.create') }}">
     <div class="option div-con-borde">
-        <img src="https://www.manageengine.com/products/service-desk/itil/images/itil-service-catalog-guide.png" alt="Imagen 1">
+        <img src="https://www.manageengine.com/products/service-desk/itil/images/itil-service-catalog-guide.png">
         <p>Solicitud de servicio</p>
     </div>
     </a>
     <a href="">
     <div class=" option div-con-borde">
-        <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" alt="Imagen 2">
+        <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" >
         <p>Comprar productos</p>
     </div>
     </a>
@@ -29,7 +29,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh;
+        flex-wrap: wrap;
+        gap: 20px;
 
     }
 
@@ -41,7 +42,7 @@
 
     .option {
         text-align: center;
-        margin: 100px;
+        margin: 50px;
 
     }
 
@@ -64,7 +65,7 @@
         }
 
         .option {
-            margin: 20px 0;
+            margin: 10px; /* Ajusta el margen para pantallas más pequeñas */
         }
     }
 

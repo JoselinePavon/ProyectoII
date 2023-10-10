@@ -31,7 +31,7 @@ class Servicio extends Model
 		'referencias' => 'required',
 		'numero_telefono' => 'required',
 		'tipo_servicio' => 'required',
-		'users_id' => 'required',
+
     ];
 
     protected $perPage = 20;
@@ -41,7 +41,7 @@ class Servicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_cliente','direccion_cliente','referencias','numero_telefono','tipo_servicio','users_id'];
+    protected $fillable = ['nombre_cliente','direccion_cliente','referencias','numero_telefono','tipo_servicio','users_id', 'estados_id'];
 
 
     /**

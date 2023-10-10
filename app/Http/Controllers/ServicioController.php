@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Servicio;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -18,7 +19,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $servicios = Servicio::paginate();
+
+        $servicios = Servicio::paginate(10);
 
         return view('servicio.index', compact('servicios'))
             ->with('i', (request()->input('page', 1) - 1) * $servicios->perPage());
@@ -42,10 +44,12 @@ class ServicioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $colageno = $request->all()+['users_id'=>$request->user()->id];
+
+
         request()->validate(Servicio::$rules);
 
-        $servicio = Servicio::create($request->all());
+        $servicio = Servicio::create($colageno);
 
         return redirect()->route('home3')
             ->with('success', 'Servicio created successfully.');
@@ -106,4 +110,20 @@ class ServicioController extends Controller
         return redirect()->route('servicios.index')
             ->with('success', 'Servicio deleted successfully');
     }
+    public function asignar($id)
+    {
+        $servicio = Servicio::find($id);
+        $tecnico= User::where("rol_usuario_id", '=' , '2')->get();
+
+        return view('servicio.asignar', compact('servicio', 'tecnico'));
+    }
+    public function asignartecnico(Request $request, Servicio $servicio)
+    {
+        $servicio->update($request->all());
+
+        return redirect()->route('servicios.index')
+            ->with('success', 'Servicio updated successfully');
+    }
+
+
 }

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $precio_venta
  * @property $marca
  * @property $foto_producto
- * @property $categoria
+ * @property $categoria_id
  * @property $created_at
  * @property $updated_at
  *
@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Produc extends Model
 {
-    
+
     static $rules = [
 		'codigo_producto' => 'required',
 		'nombre_producto' => 'required',
 		'precio_venta' => 'required',
 		'marca' => 'required',
 		'foto_producto' => 'required',
-		'categoria' => 'required',
+		'categoria_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -39,7 +39,7 @@ class Produc extends Model
      *
      * @var array
      */
-    protected $fillable = ['codigo_producto','nombre_producto','precio_venta','marca','foto_producto','categoria'];
+    protected $fillable = ['codigo_producto','nombre_producto','precio_venta','marca','foto_producto','categoria_id'];
 
 
 
