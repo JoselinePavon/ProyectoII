@@ -24,18 +24,18 @@
             </div>
         </div>
 
-        <div class="container mt-4">
-            <div class="table-responsive">
-                <table class="table table-bordered text-center nunito sans-serif" style="background-color: white">
+        <div class="container mt-10">
+            <div class="table-responsive" style="overflow-x: auto;">
+                <table class="table table-bordered table-ml text-center nunito sans-serif" style="background-color: white">
                     <thead class="thead-dark">
                     <tr>
-                        <th style="color: white">Nombre del cliente</th>
+                        <th style="color: white">Cliente</th>
                         <th style="color: white">Direccion</th>
                         <th style="color: white">Referencias</th>
                         <th style="color: white">Telefono</th>
                         <th style="color: white">Servicio</th>
-                        <th style="color: white" colspan="2">Confirmar</th>
-                        <th></th>
+                        <th style="color: white">Acciones</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
 
                             <td>
                                 @if($servicio->estados_id == 1)
-                                    <p>No Confirmado</p>
+                                    <p><i class="fas fa-times"></i> No Confirmado</p>
                                 @elseif($servicio->estados_id == 2)
                                     <p>Confirmado</p>
                                 @else($servicio->estados_id == 3)
@@ -61,7 +61,7 @@
                                 <form method="POST" action="{{ route('toggle', $servicio ->id) }}">
                                     @csrf
                                     @if($servicio->estados_id == 1)
-                                    <button class="btn btn-sm btn-warning" type="submit"><i
+                                    <button class="btn btn-sm btn-outline-warning" type="submit"><i
                                             class="fa fa-check-circle"></i> {{ __('Confirmar') }}</button>
                                     @endif
                                 </form>

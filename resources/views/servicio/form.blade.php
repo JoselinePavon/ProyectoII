@@ -28,7 +28,7 @@
 
         <div class="row">
             <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-3" onclick="save()" style="background-color: #9ecbe6">
-                <i class="fas fa-save"></i> Guardar Producto
+                <i class="fas fa-save"></i> Enviar solicitud de servicio
             </button>
 
             <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/home3')}}" style="background-color: #ff1457"><i

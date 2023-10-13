@@ -52,7 +52,7 @@ class ServicioController extends Controller
         $servicio = Servicio::create($colageno);
 
         return redirect()->route('home3')
-            ->with('success', 'Servicio created successfully.');
+            ->with('success', 'Servicio creado');
     }
 
     /**
@@ -95,7 +95,7 @@ class ServicioController extends Controller
         $servicio->update($request->all());
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Servicio updated successfully');
+            ->with('success', 'Servicio editado exitosamente');
     }
 
     /**
@@ -108,7 +108,7 @@ class ServicioController extends Controller
         $servicio = Servicio::find($id)->delete();
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Servicio deleted successfully');
+            ->with('success', 'Servicio eliminado exitosamente');
     }
     public function asignar($id)
     {
@@ -122,7 +122,7 @@ class ServicioController extends Controller
         $servicio->update($request->all());
 
         return redirect()->route('servicios.index')
-            ->with('success', 'Servicio updated successfully');
+            ->with('success', 'Tecnico asignado');
     }
 
 

@@ -16,7 +16,7 @@
         <p>Solicitud de servicio</p>
     </div>
     </a>
-    <a href="">
+    <a href="{{ route('catalogo') }}">
     <div class=" option div-con-borde">
         <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" >
         <p>Comprar productos</p>
@@ -35,9 +35,21 @@
     }
 
     .div-con-borde {
-        border: 3px solid black;
-        padding: 10px;
-        border-radius: 50px;
+        max-width: 500px;
+        margin: auto;
+        border: 1px solid #666;
+        border-radius: 10px;
+        padding: 20px;
+        transition: .3s;
+        box-shadow: 0 0 10px #666;
+        scale: 1.05;
+        justify-content: space-between;
+        contain: paint;
+        display: block;
+        font-weight: bold;
+        text-align: center;
+
+
     }
 
     .option {

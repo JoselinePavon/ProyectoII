@@ -26,7 +26,7 @@
         }
 
         .navbar {
-            background-color: #3CBCD0FF;
+            background-color: #0C6EA9FF;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -99,7 +99,7 @@
 <body>
 <nav class="navbar">
         <div class="logo">
-            <img src="https://static.vecteezy.com/system/resources/previews/013/368/321/original/coding-3d-render-icon-illustration-png.png" alt="Logo">
+            <img src="https://www.pentasys.es/wp-content/uploads/2021/05/mantenimiento-de-equipos-informaticos.png" alt="Logo">
             <p>Centro de Servicio IndexGT</p>
         </div>
 

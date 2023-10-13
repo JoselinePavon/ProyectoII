@@ -39,10 +39,10 @@
             font-family: "Nunito", sans-serif;
             text-align: center;
             height: 100%;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
-            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
-            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -moz-linear-gradient(270deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(12, 110, 169)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
+            background: -webkit-linear-gradient(270deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: linear-gradient(180deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
             overflow: hidden;
 
         }
@@ -534,7 +534,7 @@
             margin: 2em auto 0;
         }
         .form-wrap a {
-            color: #9200a2;
+            color: #94cd1c;
             padding-bottom: 4px;
             border-bottom: 1px solid #5FD1C1;
         }
@@ -561,13 +561,13 @@
             text-align: center;
             font-weight: 400;
             display: block;
-            color: #9200a2;
+            color: #94cd1c;
             border: 0;
 
 
         }
         .form-wrap .tabs h3 a.active {
-            color: #9200a2;
+            color: #94cd1c;
         }
         .form-wrap .tabs h3 a.active span {
             padding-bottom: 4px;

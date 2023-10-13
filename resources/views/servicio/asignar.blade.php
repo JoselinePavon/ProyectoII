@@ -31,7 +31,7 @@
                             <br>
                             <div class="row text-center">
                                         <button id="Guardado" type="submit" class="btn btn-outline-light col-md-4 offset-2 mr-4" onclick="save()" style="background-color: #9ecbe6">
-                                            <i class="fas fa-save"></i> Guardar Producto
+                                            <i class="fas fa-save"></i> Asignar tecnico
                                         </button>
 
                                         <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/servicios')}}" style="background-color: #ff1457"><i

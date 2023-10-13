@@ -22,25 +22,22 @@
                         </div>
                     @endif
 
-                    <div class="card-body">
-                        <div class="col-sm-16">
-                            <table class="table text-center nunito sans-serif "style="background-color: white" >
-                                <thead class="thead" style="background-color: #343635FF" >
-                                    <tr>
-                                        <th style="color: white">No</th>
-
-										<th style="color: white">Nombre Cliente</th>
-										<th style="color: white">Direccion Cliente</th>
-										<th style="color: white">Referencias</th>
-										<th style="color: white">Numero Telefono</th>
-										<th style="color: white">Tipo Servicio</th>
-										<th style="color: white">Asignar tecnico</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($servicios as $servicio)
+                <div class="card-body">
+                    <div class="col-sm-16">
+                        <table class="table text-center nunito sans-serif" style="background-color: white">
+                            <thead class="thead" style="background-color: #2d2e33">
+                            <tr>
+                                <th style="color: white; width: 20px;">No</th>
+                                <th style="color: white; width: 150px;">Cliente</th>
+                                <th style="color: white; width: 200px;">Direccion</th>
+                                <th style="color: white; width: 200px;">Referencias</th>
+                                <th style="color: white; width: 100px;">Telefono</th>
+                                <th style="color: white; width: 150px;">Tipo Servicio</th>
+                                <th style="color: white; width: 150px;">Asignar tecnico</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+            @foreach ($servicios as $servicio)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\cliente;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProducController;
 use App\Http\Controllers\VistaClienteController;
@@ -31,14 +32,15 @@ Route::resource('/producs', ProducController::class)->middleware('auth');;
 
 
 /* Routes ordenes */
-Route::resource('/servicios', \App\Http\Controllers\ServicioController::class)->middleware('auth');; // Ruta para la vista de ordenes
+Route::resource('/servicios', \App\Http\Controllers\ServicioController::class)->middleware('auth'); // Ruta para la vista de ordenes
 Route::get('/asignar/{id}', [\App\Http\Controllers\ServicioController::class, 'asignar']) ->name('asignar')->middleware('auth');;
 Route::post('/asignartecnico/{servicio}', [\App\Http\Controllers\ServicioController::class, 'asignartecnico'])->name('asignartecnico')->middleware('auth');;
 //---------------FINALIZAN LAS RUTAS DEL ADMINISTRADOR--------------------
 
 //RUTA DEL CLIENTE
-    Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3')->middleware('auth');; // Ruta para la vista de cliente
-    Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo')->middleware('auth');;// vista para el catalogo del cliente
+Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3')->middleware('auth');; // Ruta para la vista de cliente
+Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo')->middleware('auth');;// vista para el catalogo del cliente
+Route::resource('/clientes', \App\Http\Controllers\ClienteController::class)->middleware('auth');
 
 //RUTA PARA EL TECNICO
 Route::get('/home2', [\App\Http\Controllers\OrdenController::class, 'index'])->name('home2')->middleware('auth');; // Ruta para la vista de cliente

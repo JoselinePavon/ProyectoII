@@ -28,12 +28,14 @@
             position: fixed;
             top: 0;
             left: -250px;
-            background: -moz-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);;
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(52, 54, 53)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
-            background: -webkit-linear-gradient(270deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
-            background: linear-gradient(180deg, rgb(52, 54, 53) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: -moz-linear-gradient(270deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);;
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgb(12, 110, 169)), color-stop(50%, rgb(158, 203, 230)), color-stop(100%, rgb(60, 188, 208)));
+            background: -webkit-linear-gradient(270deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
+            background: linear-gradient(180deg, rgb(12, 110, 169) 0%, rgb(158, 203, 230) 50%, rgb(60, 188, 208) 100%);
             transition: left 0.3s ease-in-out;
             overflow-y: auto;
+
+
         }
 
         .sidebar.active {
@@ -108,7 +110,7 @@
         }
 
         .navbar {
-            background-color: #3CBCD0FF;
+            background-color: #0C6EA9FF;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -182,7 +184,7 @@
 <body>
 <nav class="navbar">
     <div class="logo">
-        <img src="https://static.vecteezy.com/system/resources/previews/013/368/321/original/coding-3d-render-icon-illustration-png.png" alt="Logo">
+        <img src="https://www.pentasys.es/wp-content/uploads/2021/05/mantenimiento-de-equipos-informaticos.png" alt="Logo">
         <p>Centro de Servicio IndexGT</p>
     </div>
     <div class="user">
@@ -202,6 +204,7 @@
         <li><a  href="{{url('read/tecnico')}}"><i class="fas fa-user"></i> Personal Tecnico</a></li>
         <li><a href="{{url('/producs')}}"><i class="fa-solid fa-cart-plus"></i> productos</a></li>
         <li><a href="{{url('servicios')}}"> <i class="fa-solid fa-clipboard-list"></i> Ordenes de servicio</a></li>
+        <li><a href="{{url('/clientes')}}">     <i class="fas fa-truck"></i> Envios </a></li>
         <li><a href="#"><i class="fa-solid fa-chart-line"></i> Informes</a></li>
     </ul>
 </div>

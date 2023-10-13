@@ -60,7 +60,7 @@
                                                     Sin imagen
                                                 @endif
                                             </td>
-											<td>{{ $produc->categoria }}</td>
+                                            <td>{{ $produc->descripcion}}</td>
                                             <td class="col-2">
                                                 <form action="{{ route('producs.destroy',$produc->id) }}" method="POST" class="">
                                                     <a class="btn btn-sm btn-primary " style="background-color:#9ecbe6" href="{{ route('producs.show',$produc->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('') }}</a>

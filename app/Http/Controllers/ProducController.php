@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produc;
 use App\Models\ProductoModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class ProducController
@@ -19,10 +21,14 @@ class ProducController extends Controller
      */
     public function index()
     {
-        $producs = Produc::paginate(10);
+
+        $producs = Produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
+            ->select('producs.*', 'categoria.descripcion')
+            ->paginate(10);
 
         return view('produc.index', compact('producs'))
             ->with('i', (request()->input('page', 1) - 1) * $producs->perPage());
+
     }
 
     /**
@@ -55,6 +61,7 @@ class ProducController extends Controller
         if ($request->hasFile('foto_producto')) {
             $foto_producto = $request->file('foto_producto');
             $rutaFoto = $foto_producto->store('producs', 'public');
+
         }
 
         $produc = new Produc();

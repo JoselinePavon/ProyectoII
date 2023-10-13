@@ -47,9 +47,12 @@ class Servicio extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+
+
     public function asignacions()
     {
         return $this->hasMany('App\Models\Asignacion', 'servicios_id', 'id');
+
     }
 
     /**
@@ -59,6 +62,7 @@ class Servicio extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'users_id');
     }
+
 
 
 }

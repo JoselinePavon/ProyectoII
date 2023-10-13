@@ -1,29 +1,27 @@
 @extends('layouts.app3')
 
 @section('template_title')
-
-    {{ __('Create') }} Servicio
+    {{ __('Create') }} Cliente
 @endsection
 
 @section('content')
-    <br>
-    <section class="content container-fluid"
+
+    <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-10 mt-8 ml-8 nunito sans-serif text-left mx-auto" >
+            <div class="col-md-10 mt-8 ml-8 nunito sans-serif text-left mx-auto"  style="margin-top: 20px;">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default" >
                     <div class="card-header" style="background-color:#9ecbe6" >
                         <h2  class="text-center" style="color: white" >
-
-                            <span class="card-title">{{ __('📋') }} Solicitud de servicio</span></h2>
+                            <span class="card-title">{{ __('🚚') }} Direccion de envio del producto</span></h2>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('servicios.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('clientes.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('servicio.form')
+                            @include('cliente.form')
 
                         </form>
                     </div>
