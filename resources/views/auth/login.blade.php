@@ -534,7 +534,7 @@
             margin: 2em auto 0;
         }
         .form-wrap a {
-            color: #94cd1c;
+            color: #0C6EA9FF;
             padding-bottom: 4px;
             border-bottom: 1px solid #5FD1C1;
         }
@@ -561,17 +561,17 @@
             text-align: center;
             font-weight: 400;
             display: block;
-            color: #94cd1c;
+            color: #0C6EA9FF;
             border: 0;
 
 
         }
         .form-wrap .tabs h3 a.active {
-            color: #94cd1c;
+            color: #0C6EA9FF;
         }
         .form-wrap .tabs h3 a.active span {
             padding-bottom: 4px;
-            border-bottom: 1px solid #e158ee;
+            border-bottom: 1px solid lightseagreen;
         }
         .form-wrap .tabs-content {
             padding: 1.5em 3em;
@@ -849,7 +849,7 @@
             }
         }
         /* LARGE VIEWPORT */
-        @media only screen and (min-width: 60em) {
+        @media only screen and (min-width: 50em) {
             /* WRAP */
             .wrap {
                 width: 900px;
@@ -913,14 +913,15 @@
 
         <!-- RECOVERY -->
         <div class="recovery">
-            <h2>Password Recovery</h2>
-            <p>Enter either the <strong>email address</strong> or <strong>username</strong> on the account and <strong>click Submit</strong></p>
-            <p>We'll email instructions on how to reset your password.</p>
+            <h2>Restablecer contraseña</h2>
+            <p>Ingrese la dirección de <strong>correo electrónico</strong> de la cuenta y haga clic  <strong>clic en Enviar </strong></p>
+            <p>
+                Le enviaremos instrucciones por correo electrónico sobre cómo restablecer su contraseña.</p>
             <form class="recovery-form" action="" method="post">
-                <input type="text" class="input" id="user_recover" placeholder="Enter Email or Username Here">
-                <input type="submit" class="button" value="Submit">
+                <input type="text" class="input" id="user_recover" placeholder="Escribir correo electronico">
+                <input type="submit" class="button" value="Enviar">
             </form>
-            <p class="mssg">An email has been sent to you with further instructions.</p>
+            <p class="mssg">El correo electronico proporcionado no esta registrado.</p>
         </div>
 
         <!-- SLIDER -->
@@ -968,8 +969,6 @@
                             @csrf
                             <input type="email" class="input"  name="email" id="email" autocomplete="off" placeholder="Correo Electronico">
                             <input type="password" class="input" name="password" id="password" autocomplete="off" placeholder="Contraseña">
-                            <input type="checkbox" class="checkbox" checked id="remember_me">
-                            <label for="remember_me">Recordar contraseña</label>
                             <input type="submit" class="button" value="Entrar">
                         </form>
                         <div class="help-action">

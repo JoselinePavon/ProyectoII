@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Models\cliente;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProducController;
@@ -41,6 +42,20 @@ Route::post('/asignartecnico/{servicio}', [\App\Http\Controllers\ServicioControl
 Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3')->middleware('auth');; // Ruta para la vista de cliente
 Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo')->middleware('auth');;// vista para el catalogo del cliente
 Route::resource('/clientes', \App\Http\Controllers\ClienteController::class)->middleware('auth');
+
+//RUTA PARA CARRITO
+Route::get('/shop', [CartController::class, 'shop'])->name('shop');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::get('/checkout', [CartController::class,
+    'checkout'])->name('checkout');
+
+Route::post('/ventas', [CartController::class, 'storeVenta'])->name('ventas.store');
+
+
 
 //RUTA PARA EL TECNICO
 Route::get('/home2', [\App\Http\Controllers\OrdenController::class, 'index'])->name('home2')->middleware('auth');; // Ruta para la vista de cliente

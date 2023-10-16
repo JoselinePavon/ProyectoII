@@ -16,7 +16,7 @@
         <p>Solicitud de servicio</p>
     </div>
     </a>
-    <a href="{{ route('catalogo') }}">
+    <a href="{{ route('shop') }}">
     <div class=" option div-con-borde">
         <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" >
         <p>Comprar productos</p>

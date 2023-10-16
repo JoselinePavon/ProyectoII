@@ -42,7 +42,7 @@
 										<th style="color: white">Imagen</th>
 										<th style="color: white">Categoria</th>
                                         <th style="color: white" colspan="2">Acciones</th>
-                                        <th></th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
