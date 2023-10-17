@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\cliente;
+use App\Models\DetalleVenta;
+use App\Models\Produc;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 
 /**
@@ -29,7 +32,7 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $cliente = new cliente();
         return view('cliente.create', compact('cliente'));
@@ -43,10 +46,17 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(cliente::$rules);
+        $data =$request->all() +['users_id'=>$request->user()->id]+['fecha_venta'=>now()]+['descripcion'=>'Venta en linea'];
 
-        $cliente = cliente::create($request->all());
 
+        $venta = Venta::create($data);
+
+        \Cart::session($request->user()->id);
+        $cartCollection =  \Cart::getContent();
+        foreach ($cartCollection as $item) {
+            DetalleVenta::create(['cantidad_producto'=>$item->quantity,'precio_producto'=>$item->associatedModel->precio_venta,'venta_id'=>$venta->id]);
+        }
+        \Cart::clear();
         return redirect()->route('shop')
             ->with('Ok', 'Enviado exitosamente');
     }
