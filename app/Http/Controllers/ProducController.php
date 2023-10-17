@@ -88,7 +88,9 @@ class ProducController extends Controller
      */
     public function show($id)
     {
-        $produc = Produc::find($id);
+        $produc = Produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
+            ->select('producs.*', 'categoria.descripcion as categoria_descripcion')
+            ->find($id);
 
         return view('produc.show', compact('produc'));
     }
@@ -115,13 +117,29 @@ class ProducController extends Controller
      */
     public function update(Request $request, Produc $produc)
     {
-        request()->validate(Produc::$rules);
+        // Validar los campos del producto, puedes usar las reglas definidas en el modelo Produc.
+        $request->validate(Produc::$rules);
 
-        $produc->update($request->all());
+        // Verificar si se ha cargado una nueva foto
+        if ($request->hasFile('foto')) {
+            // Guardar la nueva foto y actualizar el atributo 'foto' en el modelo
+            $imagePath = $request->file('foto')->store('ruta_para_guardar_fotos');
+            $produc->foto = $imagePath;
+        }
+
+        // Verificar si se ha seleccionado una nueva categoría
+        if ($request->has('categoria_id')) {
+            // Actualizar el atributo 'categoria_id' en el modelo
+            $produc->categoria_id = $request->input('categoria_id');
+        }
+
+        // Guardar los cambios en la base de datos
+        $produc->save();
 
         return redirect()->route('producs.index')
             ->with('success', 'Producto actualizado exitosamente');
     }
+
 
     /**
      * @param int $id

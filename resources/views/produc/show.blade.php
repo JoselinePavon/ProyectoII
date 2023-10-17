@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Categoria:</strong>
-                            {{ $produc->categoria }}
+                            {{ $produc->categoria_descripcion }}
                         </div>
 
                     </div>

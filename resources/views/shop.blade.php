@@ -9,8 +9,6 @@
             </a>
         </div>
     </header>
-
-
     <div class="container" style="margin-top: 50px">
         <div class="row justify-content-center ">
             <div class="col-lg-12  ">
@@ -20,7 +18,7 @@
                             <div class="card " style="margin-bottom: 20px; height: auto; border: 2px solid #15648f;">
                                 <img src="{{ asset('storage/' . $pro->foto_producto) }}"
                                      class="card-img-top mx-auto"
-                                     style="height: 150px; width: 150px;display: block;"
+                                     style="height: 150px; width: 250px;display: block;"
                                      alt="Foto">
                                 <div class="card-body items product-card">
                                     <a href=""><h6 class="card-title">{{ $pro->nombre_producto }}</h6></a>

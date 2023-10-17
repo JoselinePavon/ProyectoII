@@ -47,7 +47,7 @@ class ClienteController extends Controller
 
         $cliente = cliente::create($request->all());
 
-        return redirect()->route('clientes.index')
+        return redirect()->route('shop')
             ->with('Ok', 'Enviado exitosamente');
     }
 

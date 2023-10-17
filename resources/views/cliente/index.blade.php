@@ -23,17 +23,18 @@
                 @endif
 
 
-                <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover" style="color:#ffffff;">
+                <div class="card-body col-sm-14">
+                    <div class="table-responsive">
+                        <div class="col-sm-16">
+                            <table class="table text-center nunito sans-serif " style="background-color:#ffffff;">
                                 <thead class="thead" style="background-color: #2d2e33";>
                                     <tr>
-                                        <th>No</th>
+                                        <th style="color: white">No</th>
 
-										<th>Nombre Cliente</th>
-										<th>Direccion Cliente</th>
-										<th>Numero Telefono</th>
-                                        <th>Eliminar registro</th>
+										<th style="color: white">Nombre Cliente</th>
+										<th style="color: white">Direccion Cliente</th>
+										<th style="color: white">Numero Telefono</th>
+                                        <th style="color: white">Eliminar registro</th>
 
                                     </tr>
                                 </thead>
