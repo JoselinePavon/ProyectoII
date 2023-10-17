@@ -18,7 +18,7 @@
     </a>
     <a href="{{ route('shop') }}">
     <div class=" option div-con-borde">
-        <img src="https://blumbox.do/wp-content/uploads/2020/10/tienda-online.png" >
+        <img src="https://img.freepik.com/vector-premium/entrega-tienda-online-tienda-web-compra-minorista-envio-compra-mercado-bienes-negocio-compras_102902-949.jpg?w=740" >
         <p>Comprar productos</p>
     </div>
     </a>

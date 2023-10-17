@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('estado'); // true para libre, false para ocupado
+            $table->string('estado');
             $table->timestamps();
         });
     }

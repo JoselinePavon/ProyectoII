@@ -1,6 +1,7 @@
 @extends('layouts.app3')
 
 @section('content')
+    @php(\Cart::session(request()->user()->id))
     <div class="container" style="margin-top: 80px">
         @if(session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,15 +42,17 @@
                 @foreach($cartCollection as $item)
                     <div class="row">
                         <div class="col-lg-3">
-                            <img src="{{ asset('storage/' . $item->attributes->foto_producto) }}" class="img-thumbnail" width="200" height="200">
+                            <img src="{{ asset('storage/' . $item->associatedModel->foto_producto) }}" class="img-thumbnail" width="200" height="200">
 
                         </div>
                         <div class="col-lg-5">
                             <p>
-                                <b><a href="/shop/{{ $item->attributes->categoria_id }}">{{ $item->nombre_producto }}</a></b><br>
-                                <b>Precio: </b>Q. {{ $item->precio_venta }}<br>
-                                <b>Sub Total: </b>Q. {{ \Cart::get($item->id)->getPriceSum() }}<br>
-                                {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }}--}}
+                                <b><a href="/shop/{{ $item->attributes->categoria_id }}">{{ $item->associatedModel->nombre_producto }}</a></b>
+                                <b>Precio: </b>Q. {{ $item->associatedModel->precio_venta }}<br>
+
+                                <b>Sub Total: </b>Q.
+                                {{\Cart::get($item->id)->getPriceSum()}}<br>
+
                             </p>
                         </div>
                         <div class="col-lg-4">
@@ -84,7 +87,7 @@
                 <div class="col-lg-5">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>Q. {{ \Cart::getTotal() }}</li>
+                            <li class="list-group-item"><b>Total: </b>Q. {{ $total }}</li>
                         </ul>
                     </div>
                     <br><a href="/shop" class="btn btn-dark">Continue en la tienda</a>

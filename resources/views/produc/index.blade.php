@@ -51,7 +51,7 @@
 
 											<td>{{ $produc->codigo_producto }}</td>
 											<td>{{ $produc->nombre_producto }}</td>
-											<td>{{ $produc->precio_venta }}</td>
+											<td> Q.{{ $produc->precio_venta }}</td>
 											<td>{{ $produc->marca }}</td>
                                             <td>
                                                 @if($produc->foto_producto)

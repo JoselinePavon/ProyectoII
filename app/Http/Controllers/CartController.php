@@ -2,28 +2,38 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\cliente;
 use App\Models\Produc;
-use Cart;
+
 class CartController extends Controller
 {
     public function shop()
     {
         $produc= Produc::all();
-        //dd($products);
         return view('shop')->with(['produc' => $produc]);
     }
 
-    public function cart()  {
-        $cartCollection = \Cart::getContent();
+    public function cart(Request $request)  {
+        \Cart::session($request->user()->id);
+        $cartCollection =  \Cart::getContent();
+
+        $total = 0;
+        $subtotal = 0;
 
         foreach ($cartCollection as $item) {
+            $subtotal = floatval($item->associatedModel->precio_venta) * $item->quantity;
+            $total += $subtotal;
+            $item->subtotal = $subtotal;
+
             $produc = Produc::find($item->id);
             $item->attributes->foto_producto = $produc->foto_producto;
+
         }
+
         //dd($cartCollection);
-        return view('cart')->with(['cartCollection' => $cartCollection]);
+        return view('cart')->with(['cartCollection' => $cartCollection, 'total'=>$total]);
     }
 
     public function create()
@@ -33,24 +43,29 @@ class CartController extends Controller
     }
 
     public function remove(Request $request){
+        \Cart::session($request->user()->id);
         \Cart::remove($request->id);
         return redirect()->route('cart.index')->with('success_msg', 'Producto eliminado!');
     }
 
-    public function add(Request$request){
-        \Cart::add(array(
-                'id' => $request->id,
-                'nombre_producto' => $request->nombre_producto,
-                'precio_venta' => $request->precio_venta,
-                'attributes' => array(
-                    'foto_producto' => $request->foto_producto,
-                    'categoria_id' => $request->categoria_id
-    )
+    public function add(Request $request){
+        $Product = Produc::find($request->id);
+
+        \Cart::session($request->user()->id)->add(array(
+            'id' =>  $request->id,
+            'name' =>  $request->nombre_producto,
+            'price' =>  $request->precio_venta,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $Product
+
         ));
+
         return redirect()->route('cart.index')->with('success_msg', 'Producto Agregado a sú Carrito!');
     }
 
     public function update(Request $request){
+        \Cart::session($request->user()->id);
         \Cart::update($request->id,
             array(
                 'quantity' => array(
@@ -60,7 +75,8 @@ class CartController extends Controller
             ));
         return redirect()->route('cart.index')->with('success_msg', 'Producto adquirido!');
     }
-    public function clear(){
+    public function clear(Request $request ){
+        \Cart::session($request->user()->id);
         \Cart::clear();
         return redirect()->route('cart.index')->with('success_msg', 'Carrito vacio!');
     }
@@ -68,14 +84,15 @@ class CartController extends Controller
     public function checkout(){
         return view('checkout');
     }
-    public function storeVenta(){
+    public function storeVenta(Request $request){
         // Accede al contenido del carrito
-        $cartItems = Cart::getContent();
+        \Cart::session($request->user()->id);
+        $cartItems = \Cart::getContent();
 
         // Crea una nueva venta
         $venta = new Venta();
 
-        $venta->total = Cart::getTotal();
+        $venta->total = \Cart::getTotal();
 
         // Guarda la venta en la base de datos
         $venta->save();

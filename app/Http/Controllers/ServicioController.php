@@ -125,5 +125,4 @@ class ServicioController extends Controller
             ->with('success', 'Tecnico asignado');
     }
 
-
 }
