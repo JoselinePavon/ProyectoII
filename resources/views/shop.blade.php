@@ -2,14 +2,21 @@
 
 @section('content')
     <header>
-        <h1> 🖱️ Productos & accesorios tecnologicos ⌨️</h1>
+        <h2> 🖱️ Productos & Accesorios Tecnológicos ⌨️</h2>
+        <div class="text-center">
+            <a href="/home3" class="btn btn-warning">
+                <i class="fas fa-arrow-left"></i> Regresar al inicio
+            </a>
+        </div>
     </header>
+
+
     <div class="container" style="margin-top: 50px">
         <div class="row justify-content-center ">
             <div class="col-lg-12  ">
                 <div class="row items">
                     @foreach($produc as $pro)
-                        <div class="col-lg-3 ">
+                        <div class="col-lg-4 ">
                             <div class="card " style="margin-bottom: 20px; height: auto; border: 2px solid #15648f;">
                                 <img src="{{ asset('storage/' . $pro->foto_producto) }}"
                                      class="card-img-top mx-auto"
@@ -53,11 +60,11 @@
                 background: url(https://img.freepik.com/fotos-premium/muestra-portatiles-escaparate-detras-cristal-sobre-fondo-borroso_475689-1419.jpg?size=626&ext=jpg&ga=GA1.1.1016474677.1696982400&semt=ais);
                 background-size: cover;
                 background-position:center;
-                height: 295px;
+                height: 250px;
             }
-            header h1{
+            header h2{
                 text-align: center;
-                font-size: 60px;
+                font-size: 50px;
                 /* background-color: #000; */
                 color: #fff;
                 padding: 50px 0;

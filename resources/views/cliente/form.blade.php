@@ -23,7 +23,7 @@
             <i class="fas fa-save"></i> Enviar formulario
         </button>
 
-        <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/home3')}}" style="background-color: #ff1457"><i
+        <a class="btn btn-outline-light btn-xs col-md-4" href=" {{ url('/shop')}}" style="background-color: #ff1457"><i
                 class="fas fa-ban"></i> Cancelar</a>
     </div>
 </div>

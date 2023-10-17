@@ -73,7 +73,7 @@ class CartController extends Controller
                     'value' => $request->quantity
                 ),
             ));
-        return redirect()->route('cart.index')->with('success_msg', 'Producto adquirido!');
+        return redirect()->route('cart.index')->with('success_msg', 'Producto modificado!');
     }
     public function clear(Request $request ){
         \Cart::session($request->user()->id);
