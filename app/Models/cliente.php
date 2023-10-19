@@ -24,6 +24,7 @@ class cliente extends Model
 		'nombre_cliente' => 'required',
 		'direccion_cliente' => 'required',
 		'numero_telefono' => 'required',
+
     ];
 
     protected $perPage = 20;

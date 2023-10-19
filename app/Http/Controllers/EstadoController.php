@@ -13,6 +13,8 @@ class EstadoController extends Controller
     {
         $servicio = Servicio::find($id ) ->update(['estados_id' => 2]);
         return redirect()->route('home2');
+
+
     }
 
 

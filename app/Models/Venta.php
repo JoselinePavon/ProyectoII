@@ -11,7 +11,10 @@ class Venta extends Model
 
     protected $table = "venta";
 
-
+    public function detallesVenta()
+    {
+        return $this->hasMany(DetalleVenta::class, 'venta_id');
+    }
 
 
 }

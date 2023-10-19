@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('venta', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre_cliente');
+            $table->string('direccion_cliente');
+            $table->string('numero_telefono');
             $table->string('descripcion');
             $table->date('fecha_venta');
             $table->timestamps();

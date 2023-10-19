@@ -39,8 +39,8 @@ Route::post('/asignartecnico/{servicio}', [\App\Http\Controllers\ServicioControl
 //---------------FINALIZAN LAS RUTAS DEL ADMINISTRADOR--------------------
 
 //RUTA DEL CLIENTE
-Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3')->middleware('auth');; // Ruta para la vista de cliente
-Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo')->middleware('auth');;// vista para el catalogo del cliente
+Route::get('/home3', [\App\Http\Controllers\HomeController::class, 'index'])->name('home3')->middleware('auth'); // Ruta para la vista de cliente
+Route::get('/catalogo',[\App\Http\Controllers\Catalogo::class, 'index'])->name('catalogo')->middleware('auth');// vista para el catalogo del cliente
 Route::resource('/clientes', \App\Http\Controllers\ClienteController::class)->middleware('auth');
 
 //RUTA PARA CARRITO
@@ -52,9 +52,13 @@ Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
 Route::get('/checkout', [CartController::class,
     'checkout'])->name('checkout');
-
 Route::post('/ventas', [CartController::class, 'storeVenta'])->name('ventas.store');
 
+
+// RUTA PARA EL INFORME
+Route::get('/informe', [\App\Http\Controllers\ClienteController::class, 'venta'])->name('informe')->middleware('auth');
+Route::delete('/ventas/{id}', [\App\Http\Controllers\ClienteController::class, 'destroyVenta'])->name('ventas.destroy')->middleware('auth');
+Route::get('/ventas/search', [\App\Http\Controllers\ClienteController::class, 'venta'])->name('ventas.search')->middleware('auth');
 
 
 //RUTA PARA EL TECNICO

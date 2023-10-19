@@ -12,7 +12,7 @@
 
                     <div style="display: flex; justify-content: space-between; align-items: center;" >
                             <span id="card_title" class="mt-3 ml-3">
-                               <h2> {{ __('🚚 Direccion de envio del producto') }}</h2>
+                               <h2> {{ __('🚛 Direccion de envio del producto') }}</h2>
                             </span>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="card-body col-sm-14">
                     <div class="table-responsive">
                         <div class="col-sm-16">
-                            <table class="table text-center nunito sans-serif " style="background-color:#ffffff;">
+                            <table class="table text-center nunito sans-serif " style="background-color:#ffffff;font-size: 14px;">
                                 <thead class="thead" style="background-color: #2d2e33";>
                                     <tr>
                                         <th style="color: white">No</th>
@@ -34,6 +34,9 @@
 										<th style="color: white">Nombre Cliente</th>
 										<th style="color: white">Direccion Cliente</th>
 										<th style="color: white">Numero Telefono</th>
+                                        <th style="color: white">Producto</th>
+                                        <th style="color: white">Cantidad</th>
+                                        <th style="color: white">Total a pagar</th>
                                         <th style="color: white">Eliminar registro</th>
 
                                     </tr>
@@ -46,6 +49,9 @@
 											<td>{{ $cliente->nombre_cliente }}</td>
 											<td>{{ $cliente->direccion_cliente }}</td>
 											<td>{{ $cliente->numero_telefono }}</td>
+                                            <td>{{ $cliente->productos}}</td>
+                                            <td>{{ $cliente->cantidad }}</td>
+                                            <td> Q.{{ $cliente->total }}.00</td>
 
                                             <td>
                                                 <form action="{{ route('clientes.destroy',$cliente->id) }}" method="POST">
@@ -61,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $clientes->links() !!}
+
             </div>
         </div>
     </div>

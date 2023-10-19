@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $referencias
  * @property $numero_telefono
  * @property $tipo_servicio
+ * @property $estados_id
  * @property $created_at
  * @property $updated_at
  * @property $users_id
@@ -31,6 +32,7 @@ class Servicio extends Model
 		'referencias' => 'required',
 		'numero_telefono' => 'required',
 		'tipo_servicio' => 'required',
+        'estados_id' => 'required',
 
     ];
 

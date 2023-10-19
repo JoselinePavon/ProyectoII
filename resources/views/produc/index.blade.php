@@ -31,8 +31,8 @@
                     <div class="card-body col-sm-14">
                         <div class="table-responsive">
                             <div class="col-sm-16">
-                            <table class="table text-center nunito sans-serif "style="background-color: white" >
-                                <thead class="thead" style="background-color: #343635FF" >
+                            <table class="table text-center nunito sans-serif "style="background-color: white; font-size: 16px" >
+                                <thead class="thead" style="background-color: #343635FF; " >
                                     <tr>
 
 										<th style="color: white">Codigo</th>

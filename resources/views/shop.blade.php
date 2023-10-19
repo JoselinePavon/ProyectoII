@@ -1,6 +1,13 @@
 @extends('layouts.app3')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <header>
         <h2> 🖱️ Productos & Accesorios Tecnológicos ⌨️</h2>
         <div class="text-center">

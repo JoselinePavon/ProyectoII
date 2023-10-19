@@ -19,8 +19,7 @@ class ServicioController extends Controller
      */
     public function index()
     {
-
-        $servicios = Servicio::paginate(10);
+        $servicios = Servicio::orderBy('created_at', 'desc')->paginate(10);
 
         return view('servicio.index', compact('servicios'))
             ->with('i', (request()->input('page', 1) - 1) * $servicios->perPage());
@@ -45,8 +44,6 @@ class ServicioController extends Controller
      */
     public function store(Request $request)
     {   $colageno = $request->all()+['users_id'=>$request->user()->id];
-
-
         request()->validate(Servicio::$rules);
 
         $servicio = Servicio::create($colageno);

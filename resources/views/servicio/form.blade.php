@@ -22,8 +22,12 @@
         </div>
         <div class="form-group">
             {{ Form::label('tipo_servicio') }}
-            {{ Form::text('tipo_servicio', $servicio->tipo_servicio, ['class' => 'form-control' . ($errors->has('tipo_servicio') ? ' is-invalid' : ''), 'placeholder' => 'Mantenimiento PC, Mantenimiento Impresora, Revision de equipo']) }}
+            {{ Form::text('tipo_servicio', $servicio->tipo_servicio, ['class' => 'form-control' . ($errors->has('tipo_servicio') ? ' is-invalid' : ''), 'placeholder' => 'Mantenimiento PC, Mantenimiento Impresora, Revision de equipo, Activacion de programas']) }}
             {!! $errors->first('tipo_servicio', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::hidden('estados_id', 1) }}
+            {!! $errors->first('estados_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="row">

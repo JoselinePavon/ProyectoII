@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\cliente;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\DetalleVenta;
 use App\Models\Produc;
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\select;
 
 /**
  * Class ClienteController
@@ -21,10 +24,29 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = cliente::paginate();
+
+        $clientes = DB::table('venta')->select('venta.*')->get();
+
+        $clientes-> map(function ($item){
+            $detalles = DB::table('detalle_venta')->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')->where('detalle_venta.venta_id','=',$item->id)->select('detalle_venta.*','producs.*')->get();
+
+            $cantidad =0;
+            $total=0;
+            $productos = "";
+
+            foreach ( $detalles as $detalle) {
+                $cantidad += $detalle->cantidad_producto;
+                $total += $detalle->cantidad_producto * $detalle-> precio_producto;
+                $productos.=$detalle->nombre_producto.',';
+        }
+            $item -> cantidad = $cantidad;
+            $item -> total = $total;
+            $item -> productos =trim($productos,',');
+        });
 
         return view('cliente.index', compact('clientes'))
-            ->with('i', (request()->input('page', 1) - 1) * $clientes->perPage());
+            ->with('i',);
+
     }
 
     /**
@@ -34,7 +56,8 @@ class ClienteController extends Controller
      */
     public function create(Request $request)
     {
-        $cliente = new cliente();
+
+        $cliente = null;
         return view('cliente.create', compact('cliente'));
     }
 
@@ -54,11 +77,12 @@ class ClienteController extends Controller
         \Cart::session($request->user()->id);
         $cartCollection =  \Cart::getContent();
         foreach ($cartCollection as $item) {
-            DetalleVenta::create(['cantidad_producto'=>$item->quantity,'precio_producto'=>$item->associatedModel->precio_venta,'venta_id'=>$venta->id]);
+            DetalleVenta::create(['cantidad_producto'=>$item->quantity,'precio_producto'=>$item->associatedModel->precio_venta, 'producs_id'=>$item->associatedModel->id,'venta_id'=>$venta->id]);
         }
         \Cart::clear();
+
         return redirect()->route('shop')
-            ->with('Ok', 'Enviado exitosamente');
+            ->with('success', 'Pago realizado exitosamente');
     }
 
     /**
@@ -111,9 +135,82 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        $cliente = cliente::find($id)->delete();
+        // Obtén el registro de venta
+        $venta = Venta::find($id);
+
+        // Elimina los registros relacionados en detalle_venta
+        $venta->detallesVenta()->delete();
+
+        // Elimina el registro de venta
+        $venta->delete();
 
         return redirect()->route('clientes.index')
-            ->with('Ok', 'Registro eliminado');
+            ->with('success', 'Registro eliminado');
+
+
     }
+
+    public function venta(Request $request)
+    {
+        // Obtén la fecha proporcionada por el usuario desde la solicitud
+        $fecha = $request->input('fecha');
+
+        // Consulta las ventas
+        $ventas = DB::table('venta')->select('venta.*')->get();
+
+        $ventas->map(function ($item) use ($fecha) {
+            // Filtra por fecha si se proporciona
+            if ($fecha) {
+                $detalles = DB::table('detalle_venta')
+                    ->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')
+                    ->where('detalle_venta.venta_id', $item->id)
+                    ->whereDate('venta.fecha_venta', $fecha) // Filtra por la fecha
+                    ->select('detalle_venta.*', 'producs.*')
+                    ->get();
+            } else {
+                $detalles = DB::table('detalle_venta')
+                    ->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')
+                    ->where('detalle_venta.venta_id', $item->id)
+                    ->select('detalle_venta.*', 'producs.*')
+                    ->get();
+            }
+
+            $cantidad = 0;
+            $total = 0;
+            $productos = "";
+
+            foreach ($detalles as $detalle) {
+                $cantidad += $detalle->cantidad_producto;
+                $total += $detalle->cantidad_producto * $detalle->precio_producto;
+                $productos .= $detalle->nombre_producto . ',';
+            }
+
+            $item->cantidad = $cantidad;
+            $item->total = $total;
+            $item->productos = trim($productos, ',');
+        });
+
+        return view('informes.informeVentas', compact('ventas'));
+    }
+
+
+    public function destroyVenta($id)
+    {
+        // Obtén el registro de venta
+        $venta = Venta::find($id);
+
+        if (!$venta) {
+            return redirect()->route('informe')->with('error', 'Venta no encontrada');
+        }
+
+        // Elimina los detalles de venta relacionados con la venta
+        $venta->detallesVenta()->delete();
+
+        // Ahora puedes eliminar la venta
+        $venta->delete();
+
+        // Redirige a la vista de informe con un mensaje de éxito
+        return redirect()->route('informe')->with('success', 'Registro eliminado');
+    }
+
 }
