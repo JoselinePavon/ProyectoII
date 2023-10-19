@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cliente;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\DetalleVenta;
-use App\Models\Produc;
+use App\Models\produc;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,21 +27,21 @@ class ClienteController extends Controller
 
         $clientes = DB::table('venta')->select('venta.*')->get();
 
-        $clientes-> map(function ($item){
-            $detalles = DB::table('detalle_venta')->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')->where('detalle_venta.venta_id','=',$item->id)->select('detalle_venta.*','producs.*')->get();
+        $clientes->map(function ($item) {
+            $detalles = DB::table('detalle_venta')->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')->where('detalle_venta.venta_id', '=', $item->id)->select('detalle_venta.*', 'producs.*')->get();
 
-            $cantidad =0;
-            $total=0;
+            $cantidad = 0;
+            $total = 0;
             $productos = "";
 
-            foreach ( $detalles as $detalle) {
+            foreach ($detalles as $detalle) {
                 $cantidad += $detalle->cantidad_producto;
-                $total += $detalle->cantidad_producto * $detalle-> precio_producto;
-                $productos.=$detalle->nombre_producto.',';
-        }
-            $item -> cantidad = $cantidad;
-            $item -> total = $total;
-            $item -> productos =trim($productos,',');
+                $total += $detalle->cantidad_producto * $detalle->precio_producto;
+                $productos .= $detalle->nombre_producto . ',';
+            }
+            $item->cantidad = $cantidad;
+            $item->total = $total;
+            $item->productos = trim($productos, ',');
         });
 
         return view('cliente.index', compact('clientes'))
@@ -64,20 +64,20 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $data =$request->all() +['users_id'=>$request->user()->id]+['fecha_venta'=>now()]+['descripcion'=>'Venta en linea'];
+        $data = $request->all() + ['users_id' => $request->user()->id] + ['fecha_venta' => now()] + ['descripcion' => 'Venta en linea'];
 
 
         $venta = Venta::create($data);
 
         \Cart::session($request->user()->id);
-        $cartCollection =  \Cart::getContent();
+        $cartCollection = \Cart::getContent();
         foreach ($cartCollection as $item) {
-            DetalleVenta::create(['cantidad_producto'=>$item->quantity,'precio_producto'=>$item->associatedModel->precio_venta, 'producs_id'=>$item->associatedModel->id,'venta_id'=>$venta->id]);
+            DetalleVenta::create(['cantidad_producto' => $item->quantity, 'precio_producto' => $item->associatedModel->precio_venta, 'producs_id' => $item->associatedModel->id, 'venta_id' => $venta->id]);
         }
         \Cart::clear();
 
@@ -88,7 +88,7 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -101,7 +101,7 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -114,8 +114,8 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  cliente $cliente
+     * @param \Illuminate\Http\Request $request
+     * @param cliente $cliente
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, cliente $cliente)
@@ -153,46 +153,41 @@ class ClienteController extends Controller
     public function venta(Request $request)
     {
         // Obtén la fecha proporcionada por el usuario desde la solicitud
-        $fecha = $request->input('fecha');
+        $fecha_venta = $request->input('fecha'); // Cambié la variable a $fecha_venta
+        if ($fecha_venta) {
+            // Si se proporciona una fecha, consulta las ventas relacionadas con esa fecha
+            $ventas = DB::table('venta')
+                ->whereDate('fecha_venta', '=', $fecha_venta)
+                ->select('venta.*')
+                ->get();
+        }
+    $ventas = DB::table('venta')->select('venta.*')->get();
 
-        // Consulta las ventas
-        $ventas = DB::table('venta')->select('venta.*')->get();
+    $ventas->map(function ($item) use ($fecha_venta) {
+        $detalles = DB::table('detalle_venta')
+            ->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')
+            ->join('venta', 'detalle_venta.venta_id', '=', 'venta.id')
+            ->where('detalle_venta.venta_id', $item->id)
+            ->select('detalle_venta.precio_producto', 'producs.nombre_producto', 'venta.fecha_venta')
+            ->get();
 
-        $ventas->map(function ($item) use ($fecha) {
-            // Filtra por fecha si se proporciona
-            if ($fecha) {
-                $detalles = DB::table('detalle_venta')
-                    ->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')
-                    ->where('detalle_venta.venta_id', $item->id)
-                    ->whereDate('venta.fecha_venta', $fecha) // Filtra por la fecha
-                    ->select('detalle_venta.*', 'producs.*')
-                    ->get();
-            } else {
-                $detalles = DB::table('detalle_venta')
-                    ->join('producs', 'detalle_venta.producs_id', '=', 'producs.id')
-                    ->where('detalle_venta.venta_id', $item->id)
-                    ->select('detalle_venta.*', 'producs.*')
-                    ->get();
-            }
+        $precio_producto = 0;
+        $productos = "";
 
-            $cantidad = 0;
-            $total = 0;
-            $productos = "";
+        foreach ($detalles as $detalle) {
+            $precio_producto += $detalle->precio_producto; // Cambié a $detalle->total
+            $productos .= $detalle->nombre_producto . ',';
 
-            foreach ($detalles as $detalle) {
-                $cantidad += $detalle->cantidad_producto;
-                $total += $detalle->cantidad_producto * $detalle->precio_producto;
-                $productos .= $detalle->nombre_producto . ',';
-            }
+        }
 
-            $item->cantidad = $cantidad;
-            $item->total = $total;
-            $item->productos = trim($productos, ',');
-        });
+        $item->total = $precio_producto;
+        $item->productos = trim($productos, ',');
 
-        return view('informes.informeVentas', compact('ventas'));
-    }
+        return $item;
+    });
 
+    return view('informes.informeVentas', compact('ventas', 'fecha_venta')); // No sobrescribe $fecha_venta
+}
 
     public function destroyVenta($id)
     {

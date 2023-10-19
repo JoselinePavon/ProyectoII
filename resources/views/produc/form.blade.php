@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-lg">
-                {{ Form::select('categoria_id', ['1' => 'Impresora','2' => 'Laptop', '3' => 'Pc-Escritorio','4' => 'Accesorios' ], $produc->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona una categoría']) }}
+                {{ Form::select('categoria_id', $categoria, $produc->categoria_id, ['class' => 'form-control' . ($errors->has('categoria_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona una categoría']) }}
                 {!! $errors->first('categoria_id', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>

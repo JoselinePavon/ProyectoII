@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produc;
-use App\Models\ProductoModel;
+use App\Models\categoria;
+use App\Models\produc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-
 /**
  * Class ProducController
  * @package App\Http\Controllers
@@ -22,7 +20,7 @@ class ProducController extends Controller
     public function index()
     {
 
-        $producs = Produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
+        $producs = produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
             ->select('producs.*', 'categoria.descripcion')
             ->paginate(10);
 
@@ -38,8 +36,9 @@ class ProducController extends Controller
      */
     public function create()
     {
-        $produc = new Produc();
-        return view('produc.create', compact('produc'));
+        $produc = new produc();
+        $categoria = categoria::pluck('descripcion', 'id');
+        return view('produc.create', compact('produc', 'categoria'));
     }
 
     /**
@@ -56,7 +55,7 @@ class ProducController extends Controller
             'precio_venta' => 'required',
             'marca' => 'required',
             'foto_producto' => 'required',
-            'categoria_id' => 'required',
+            'categoria_id' => 'required|exists:categoria,id',
         ]);
         if ($request->hasFile('foto_producto')) {
             $foto_producto = $request->file('foto_producto');
@@ -64,13 +63,13 @@ class ProducController extends Controller
 
         }
 
-        $produc = new Produc();
+        $produc = new produc();
         $produc->codigo_producto = $request->codigo_producto;
         $produc->nombre_producto = $request->nombre_producto;
         $produc->precio_venta = $request->precio_venta;
         $produc->marca = $request->marca;
         $produc->foto_producto = $rutaFoto ?? null; // Asignación de la ruta de la foto o null si no se cargó ninguna foto
-        $produc->categoria_id =$request->categoria_id;
+        $produc->categoria_id = $request->categoria_id; // Asigna el valor de 'categoria_id' desde el formulario
         $produc->save();
 
 
@@ -78,8 +77,6 @@ class ProducController extends Controller
             ->with('success', 'Producto creado exitosamente.');
 
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -88,7 +85,7 @@ class ProducController extends Controller
      */
     public function show($id)
     {
-        $produc = Produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
+        $produc = produc::join('categoria', 'producs.categoria_id', '=', 'categoria.id')
             ->select('producs.*', 'categoria.descripcion as categoria_descripcion')
             ->find($id);
 
@@ -103,34 +100,31 @@ class ProducController extends Controller
      */
     public function edit($id)
     {
-        $produc = Produc::find($id);
-
-        return view('produc.edit', compact('produc'));
+        $produc = produc::find($id);
+        $categoria = categoria::pluck('descripcion', 'id');
+        return view('produc.edit', compact('produc' ,'categoria'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Produc $produc
+     * @param  produc $produc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produc $produc)
+    public function update(Request $request, produc $produc)
     {
         // Validar los campos del producto, puedes usar las reglas definidas en el modelo Produc.
-        $request->validate(Produc::$rules);
-
-        // Verificar si se ha cargado una nueva foto
-        if ($request->hasFile('foto')) {
-            // Guardar la nueva foto y actualizar el atributo 'foto' en el modelo
-            $imagePath = $request->file('foto')->store('ruta_para_guardar_fotos');
-            $produc->foto = $imagePath;
-        }
+        $request->validate(produc::$rules);
 
         // Verificar si se ha seleccionado una nueva categoría
         if ($request->has('categoria_id')) {
             // Actualizar el atributo 'categoria_id' en el modelo
             $produc->categoria_id = $request->input('categoria_id');
+        }
+        if ($request->hasFile('foto_producto')) {
+            $foto_producto = $request->file('foto_producto');
+            $rutaFoto = $foto_producto->store('producs', 'public');
         }
 
         // Guardar los cambios en la base de datos
@@ -139,8 +133,6 @@ class ProducController extends Controller
         return redirect()->route('producs.index')
             ->with('success', 'Producto actualizado exitosamente');
     }
-
-
     /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
@@ -148,7 +140,7 @@ class ProducController extends Controller
      */
     public function destroy($id)
     {
-        $produc = Produc::find($id)->delete();
+        $produc = produc::find($id)->delete();
 
         return redirect()->route('producs.index')
             ->with('success', 'Producto eliminado exitosamente');

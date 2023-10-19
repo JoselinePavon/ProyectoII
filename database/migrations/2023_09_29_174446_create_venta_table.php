@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('direccion_cliente');
             $table->string('numero_telefono');
             $table->string('descripcion');
-            $table->date('fecha_venta');
+            $table->datetime('fecha_venta');
             $table->timestamps();
         });
     }

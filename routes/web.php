@@ -58,7 +58,7 @@ Route::post('/ventas', [CartController::class, 'storeVenta'])->name('ventas.stor
 // RUTA PARA EL INFORME
 Route::get('/informe', [\App\Http\Controllers\ClienteController::class, 'venta'])->name('informe')->middleware('auth');
 Route::delete('/ventas/{id}', [\App\Http\Controllers\ClienteController::class, 'destroyVenta'])->name('ventas.destroy')->middleware('auth');
-Route::get('/ventas/search', [\App\Http\Controllers\ClienteController::class, 'venta'])->name('ventas.search')->middleware('auth');
+Route::get('/ventas/search', [\App\Http\Controllers\ClienteController::class, 'search'])->name('ventas.search');
 
 
 //RUTA PARA EL TECNICO

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\cliente;
-use App\Models\Produc;
+use App\Models\produc;
 
 class CartController extends Controller
 {
     public function shop()
     {
-        $produc= Produc::all();
+        $produc= produc::all();
         return view('shop')->with(['produc' => $produc]);
     }
 
@@ -27,7 +27,7 @@ class CartController extends Controller
             $total += $subtotal;
             $item->subtotal = $subtotal;
 
-            $produc = Produc::find($item->id);
+            $produc = produc::find($item->id);
             $item->attributes->foto_producto = $produc->foto_producto;
 
         }
@@ -49,7 +49,7 @@ class CartController extends Controller
     }
 
     public function add(Request $request){
-        $Product = Produc::find($request->id);
+        $Product = produc::find($request->id);
 
         \Cart::session($request->user()->id)->add(array(
             'id' =>  $request->id,

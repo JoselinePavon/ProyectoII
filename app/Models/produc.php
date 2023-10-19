@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Produc extends Model
+class produc extends Model
 {
 
     static $rules = [
@@ -29,7 +29,7 @@ class Produc extends Model
 		'precio_venta' => 'required',
 		'marca' => 'required',
 		'foto_producto' => 'required',
-		'categoria_id' => 'required',
+
     ];
 
     protected $perPage = 20;
@@ -40,6 +40,11 @@ class Produc extends Model
      * @var array
      */
     protected $fillable = ['codigo_producto','nombre_producto','precio_venta','marca','foto_producto','categoria_id'];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id');
+    }
 
 
 
