@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cliente;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\DetalleVenta;
 use App\Models\produc;
@@ -152,16 +153,16 @@ class ClienteController extends Controller
 
     public function venta(Request $request)
     {
-        // Obtén la fecha proporcionada por el usuario desde la solicitud
-        $fecha_venta = $request->input('fecha'); // Cambié la variable a $fecha_venta
-        if ($fecha_venta) {
-            // Si se proporciona una fecha, consulta las ventas relacionadas con esa fecha
-            $ventas = DB::table('venta')
-                ->whereDate('fecha_venta', '=', $fecha_venta)
-                ->select('venta.*')
-                ->get();
-        }
-    $ventas = DB::table('venta')->select('venta.*')->get();
+        $fecha_venta = $request->input('fecha');
+
+    $query = DB::table('venta')->select('venta.*');
+
+    if ($fecha_venta){
+        $ventas = $query ->where('venta.fecha_venta',Carbon::parse($fecha_venta)->format('Y-m-d'))
+            ->get();
+    }else{
+        $ventas =$query ->get();
+    }
 
     $ventas->map(function ($item) use ($fecha_venta) {
         $detalles = DB::table('detalle_venta')
@@ -207,5 +208,7 @@ class ClienteController extends Controller
         // Redirige a la vista de informe con un mensaje de éxito
         return redirect()->route('informe')->with('success', 'Registro eliminado');
     }
+
+
 
 }

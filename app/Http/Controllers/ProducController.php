@@ -125,6 +125,7 @@ class ProducController extends Controller
         if ($request->hasFile('foto_producto')) {
             $foto_producto = $request->file('foto_producto');
             $rutaFoto = $foto_producto->store('producs', 'public');
+            $produc->foto_producto = $rutaFoto ?? null;
         }
 
         // Guardar los cambios en la base de datos
